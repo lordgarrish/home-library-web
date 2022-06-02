@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 0.5em;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/books/new}">
+    <input type="submit" value="Add book">
+</form><br/>
+<table>
+    <thead>
+      <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Genre</th>
+          <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.getId()}">id</td>
+            <td><a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getTitle()}">title</a></td>
+            <td th:text="${book.getAuthor()}">author</td>
+            <td th:text="${book.getGenre()}">genre</td>
+            <td th:text="${book.getYear()}">year</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
